@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+        <title>{% block title %}Smart Clothings{% endblock %}</title>
+        <style>
+            .cardImg{
+                width: 18rem;
+                height: 18rem;
+                box-sizing: border-box;
+
+            }
+            body{
+                /*background-color: #2B3E50;*/
+            }
+            span{
+                background-color: black;
+                color: white;
+                border-color: black;
+            }
+        </style>
+    </head>
+<body>
+
+    <h3>SmartLuk Clothings</h3>
+    <h4 class="block-tittle" style="border-bottom: 2px solid black">
+    <span class="latest">Latest</span>
+    </h4>
+<div class="row" style="margin: 1rem">
+    {% for post in posts %}
+    <div class="col-md-3">
+<h4><a href="details/{{ post.slug }}"> {{ post.title }}</a></h4>
+<div class="cardImg">
+    <a href="details/{{ post.slug }}"><img src="{{ post.photo.url }}" class="img-fluid" style="width: 230px; height: 250px"></a>
+</div>
+
+
+        {{ post.body|truncatewords:30|linebreaks }}
+        </div>
+    {% endfor %}
+    <!--<aside>latest news.</aside>-->
+    </div>
+<h4 class="block-tittle" style="border-bottom: 2px solid black">
+    <span class="latest">Trending</span>
+    </h4>
+    <div class="row" style="margin: 1rem">
+    {% for trend in trends %}
+    <div class="col-md-3">
+<h4><a href="detailsTrend/{{ trend.slug }}"> {{ trend.title }}</a></h4>
+<div class="cardImg">
+    <a href="detailsTrend/{{ trend.slug }}"><img src="{{ trend.photo.url }}" class="img-fluid" style="width: 230px; height: 250px"></a>
+</div>
+
+
+        {{ trend.body|truncatewords:30|linebreaks }}
+        </div>
+    {% endfor %}
+    <!--<aside>latest news.</aside>-->
+    </div>
+{% endblock %}
+</body>
+</html>
+
+
